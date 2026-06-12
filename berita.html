@@ -6,7 +6,7 @@
     <title>Berita - DispenAD News</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Desain Grid List Berita agar Tersusun Rapi */
+        /* Desain Grid List Berita agar Rapi & Tidak Sempit Sebelah */
         .grid-berita {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -82,8 +82,8 @@
         <marquee class="ticker-text">Bumi Terus Mengirim Sinyal Bahaya, Lintaraya News Ucapkan Duka Cita Mendalam untuk Korban Bencana Alam | Akademi Kepolisian Semarang Buka Sesi Pelatihan SECATAM</marquee>
     </div>
 
-    <main class="news-container" style="max-width: 1200px; margin: 40px auto; padding: 0 20px; display: block;">
-        <div class="section-title" id="page-title">Memuat...</div>
+    <main style="max-width: 1200px; margin: 40px auto; padding: 0 20px; display: block; min-height: 60vh;">
+        <div class="section-title" id="page-title">Memuat Berita...</div>
         
         <div id="konten-area">
             </div>
@@ -100,22 +100,16 @@
     </footer>
 
     <script src="script.js"></script>
-    
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const idBerita = urlParams.get('id');
         const kontenArea = document.getElementById('konten-area');
         const pageTitle = document.getElementById('page-title');
 
-        // Mengambil data dinamis admin dari LocalStorage
         let localNews = JSON.parse(localStorage.getItem("news")) || [];
 
-        // KONDISI 1: JIKA MEMBUKA DETAIL BERITA (Ada ID Berita di URL)
         if (idBerita) {
-            // Ambil dari data statis di script.js
             let berita = dataBerita[idBerita];
-
-            // Jika tidak ketemu di statis, cari di data lokal buatan admin
             if (!berita) {
                 berita = localNews.find(item => item.id === idBerita);
             }
@@ -125,38 +119,36 @@
                 document.title = berita.title + " - DispenAD News";
                 
                 kontenArea.innerHTML = `
-                    <div class="story-table-container" style="background: white; padding: 25px; border-radius: 4px; box-sizing: border-box; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
-                        <div style="margin-bottom: 10px;">
-                            <span style="color: gray; font-size: 14px;">${berita.date}</span>
+                    <div style="background: white; padding: 30px; border: 3px solid #16162a; box-shadow: 6px 6px 0px #16162a; box-sizing: border-box;">
+                        <div style="margin-bottom: 12px;">
+                            <span style="color: gray; font-size: 14px; font-weight: bold;">${berita.date}</span>
                         </div>
-                        <h1 style="color: #16162a; margin-top: 5px; margin-bottom: 20px; line-height: 1.3; font-size: 24px;">${berita.title}</h1>
-                        <div class="img-container-box" style="margin-bottom: 20px;">
-                            <img src="${Roblox_5_29_2026_8_17_09_PM.webp}" alt="Gambar Berita" style="width: 100%; max-height: 450px; object-fit: cover; border-radius: 4px; display: block;">
+                        <h1 style="color: #16162a; margin-top: 5px; margin-bottom: 25px; line-height: 1.4; font-size: 26px; font-weight: 800;">${berita.title}</h1>
+                        <div style="margin-bottom: 25px; border: 3px solid #16162a;">
+                            <img src="${berita.image}" alt="Gambar Berita" style="width: 100%; max-height: 500px; object-fit: cover; display: block;">
                         </div>
-                        <div style="font-size: 16px; line-height: 1.6; color: #333; text-align: justify;">
+                        <div style="font-size: 16px; line-height: 1.8; color: #222; text-align: justify;">
                             ${berita.content}
                         </div>
-                        <div style="margin-top: 30px;">
-                            <a href="berita.html" style="display: inline-block; padding: 8px 15px; background: #4B5320; color: white; text-decoration: none; font-weight: bold; border: 2px solid #16162a; box-shadow: 2px 2px 0px #16162a;">← Kembali ke Semua Berita</a>
+                        <div style="margin-top: 35px;">
+                            <a href="berita.html" style="display: inline-block; padding: 10px 20px; background: #4B5320; color: white; text-decoration: none; font-weight: bold; border: 2px solid #16162a; box-shadow: 3px 3px 0px #16162a;">← Kembali ke Katalog Berita</a>
                         </div>
                     </div>
                 `;
             } else {
                 pageTitle.innerText = "Berita Tidak Ditemukan";
-                kontenArea.innerHTML = "<p style='padding: 20px;'>Maaf, berita yang anda cari tidak ditemukan.</p>";
+                kontenArea.innerHTML = "<p style='padding: 20px; font-weight:bold;'>Maaf, detail berita tidak ditemukan.</p>";
             }
 
-        // KONDISI 2: JIKA MEMBUKA HALAMAN UTAMA BERITA (Tampilkan Katalog Semua Berita)
         } else {
-            pageTitle.innerText = "Semua Berita";
+            pageTitle.innerText = "Katalog Berita Terkini";
             document.title = "Kumpulan Berita - DispenAD News";
 
             let gridHTML = '<div class="grid-berita">';
 
-            // 1. Looping berita bawaan (Statis)
             for (let key in dataBerita) {
                 const b = dataBerita[key];
-                let ringkasan = b.content.replace(/<[^>]*>/g, '').substring(0, 100) + '...';
+                let ringkasan = b.content.replace(/<[^>]*>/g, '').substring(0, 110) + '...';
                 gridHTML += `
                     <a href="berita.html?id=${key}" class="kartu-berita">
                         <img src="${b.image}" alt="${b.title}">
@@ -169,9 +161,8 @@
                 `;
             }
 
-            // 2. Looping berita inputan dinamis dari admin
             localNews.forEach(function(b) {
-                let ringkasan = b.content.replace(/<[^>]*>/g, '').substring(0, 100) + '...';
+                let ringkasan = b.content.replace(/<[^>]*>/g, '').substring(0, 110) + '...';
                 gridHTML += `
                     <a href="berita.html?id=${b.id}" class="kartu-berita">
                         <img src="${b.image}" alt="${b.title}">
@@ -188,7 +179,6 @@
             kontenArea.innerHTML = gridHTML;
         }
 
-        // Fitur Kolom Pencarian Berita
         document.querySelector('.search-box').addEventListener('submit', function(e) {
             e.preventDefault();
             let kataKunci = this.querySelector('input').value.toLowerCase();
