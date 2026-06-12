@@ -5,7 +5,7 @@ const dataBerita = {
     "dikmaba": {
         title: "UPACARA PELANTIKAN SISWA DIKMABA",
         date: "Minggu, 08 Mar 2026 16:00 WIB - Oleh: Panitia",
-        image: "img/Roblox_5_29_2026_8_17_09_PM.webp",
+        image: "Roblox_5_29_2026_8_17_09_PM.webp",
         content: `
             <p><b>Magelang</b> - Akademi Militer akan menyelenggarakan Upacara Pelantikan Siswa Pendidikan Pertama Bintara (Dikmaba) pada Minggu, 8 Maret 2026, pukul 16.00 WIB bertempat di Lapangan Upacara Akademi Militer.</p>
             <p>Kegiatan ini merupakan salah satu rangkaian penting dalam proses pendidikan yang menandai pelantikan para siswa Dikmaba setelah menjalani tahapan pembinaan dan pelatihan. Panitia mengundang para Perwira Tinggi (Pati), personel Angkatan Darat, tamu undangan, serta unsur pemerintahan untuk hadir dan memberikan dukungan dalam acara tersebut.</p>
@@ -15,7 +15,7 @@ const dataBerita = {
     "sultan": {
         title: "Empat Sultan Mencoba dan Gagal, Sri Sultan Hamengkubuwono V Akhirnya Lahirkan Parlemen Pertama Keraton Ngayogyakarta Hadiningrat Roblox",
         date: "Sabtu, 06 Jun 2026 22:40 WIB - Oleh: adeyid",
-        image: "img/Roblox_5_29_2026_8_17_09_PM.webp",
+        image: "Roblox_5_29_2026_8_17_09_PM.webp",
         content: `
             <p><b>Yogyakarta</b> - Sri Sultan Hamengkubuwono V mengukir sejarah baru di dunia Roblox dengan berhasil membentuk parlemen keraton pertama. Langkah ini diambil setelah pembentukan sistem koding di dunia virtual mengalami kendala.</p>
             <p>Pembentukan parlemen ini diharapkan mampu membawa stabilitas baru dan memberikan ruang bagi para pemain untuk ikut serta dalam menentukan arah kebijakan Keraton Ngayogyakarta Hadiningrat di platform tersebut.</p>
